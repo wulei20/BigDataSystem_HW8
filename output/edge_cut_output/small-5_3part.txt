@@ -1,0 +1,15 @@
+Partition 0
+2
+5
+4
+5
+Partition 1
+2
+4
+3
+3
+Partition 2
+1
+2
+1
+1
