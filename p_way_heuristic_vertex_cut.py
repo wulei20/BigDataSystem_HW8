@@ -149,7 +149,7 @@ def main():
             save_detailed_vertex_cut_partitions(partitions, output_file_detailed)
         else:
             save_vertex_cut_partitions(partitions, output_file)
-        if args.draw_graph:
+        if args.draw_mermaid:
             draw_mermaid_graph(partitions, mermaid_file)
 
 if __name__ == "__main__":

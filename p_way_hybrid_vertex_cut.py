@@ -105,9 +105,9 @@ def main():
     start = time.time()
     input_file = args.input_file
     method = "hybrid_vertex_cut"
-    output_file = os.path.join(args.output_dir, get_output_file_name(method, args.input_file, args.num_partitions))
+    output_file = os.path.join(args.output_dir, get_output_file_name(method, args.input_file, args.num_partitions, detailed=False, threshold=args.degree_threshold))
     print("Output file:", output_file)
-    output_file_detailed = os.path.join(args.output_dir, get_output_file_name(method, args.input_file, args.num_partitions, detailed=True))
+    output_file_detailed = os.path.join(args.output_dir, get_output_file_name(method, args.input_file, args.num_partitions, detailed=True, threshold=args.degree_threshold))
     mermaid_file = os.path.join(args.output_dir, get_mermaid_file_name(method, args.input_file, args.num_partitions))
     if args.huge_graph:
         partitions = hybrid_cut_partition_huge(input_file, args.num_partitions, args.degree_threshold)
@@ -124,7 +124,7 @@ def main():
             save_detailed_vertex_cut_partitions(partitions, output_file_detailed)
         else:
             save_vertex_cut_partitions(partitions, output_file)
-        if args.draw_graph:
+        if args.draw_mermaid:
             draw_mermaid_graph(partitions, mermaid_file)
 
 if __name__ == "__main__":

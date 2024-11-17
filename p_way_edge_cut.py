@@ -6,7 +6,7 @@ import struct
 from utils import load_graph, save_edge_cut_partitions, parse_args, get_output_file_name, get_mermaid_file_name, save_huge_edge_cut_partitions, save_detailed_edge_cut_partitions, draw_mermaid_graph
 
 def edge_cut_partition(edges, num_partitions):
-    partitions = defaultdict(lambda: {"master_vertices": set(), "vertices": set(), "replicated_edges": set(), "edges": []})
+    partitions = defaultdict(lambda: {"master_vertices": set(), "vertices": set(), "replicated_edges": [], "edges": []})
     vertex_to_partition = {}
 
     unique_vertices = set(v for edge in edges for v in edge)
@@ -24,8 +24,8 @@ def edge_cut_partition(edges, num_partitions):
             partitions[src_part]["edges"].append((src, dst))
         else:
             # Replicate edge across partitions
-            partitions[src_part]["replicated_edges"].add((src, dst))
-            partitions[dst_part]["replicated_edges"].add((src, dst))
+            partitions[src_part]["replicated_edges"].append((src, dst))
+            partitions[dst_part]["replicated_edges"].append((src, dst))
 
         # Update vertices info
         partitions[src_part]["vertices"].update([src, dst])
