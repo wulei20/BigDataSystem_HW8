@@ -108,7 +108,7 @@ def main():
     output_file = os.path.join(args.output_dir, get_output_file_name(method, args.input_file, args.num_partitions, detailed=False, threshold=args.degree_threshold))
     print("Output file:", output_file)
     output_file_detailed = os.path.join(args.output_dir, get_output_file_name(method, args.input_file, args.num_partitions, detailed=True, threshold=args.degree_threshold))
-    mermaid_file = os.path.join(args.output_dir, get_mermaid_file_name(method, args.input_file, args.num_partitions))
+    mermaid_file = os.path.join(args.output_dir, get_mermaid_file_name(method, args.input_file, args.num_partitions, threshold=args.degree_threshold))
     if args.huge_graph:
         partitions = hybrid_cut_partition_huge(input_file, args.num_partitions, args.degree_threshold)
         print(f"Partitioned in {time.time() - start} seconds")

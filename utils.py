@@ -156,11 +156,14 @@ def get_output_file_name(method, input_file, num_partitions, detailed=False, thr
     else:
         return f"{method}_output/{input_file.split('.')[0]}_{num_partitions}part{'_detailed' if detailed else ''}.txt"
 
-def get_mermaid_file_name(method, input_file, num_partitions):
+def get_mermaid_file_name(method, input_file, num_partitions, threshold=None):
     input_file = input_file.split("/")[-1]
     if not os.path.exists(f"output/{method}_output"):
         os.makedirs(f"output/{method}_output")
-    return f"{method}_output/{input_file.split('.')[0]}_{num_partitions}part_mermaid.md"
+    if threshold:
+        return f"{method}_output/{input_file.split('.')[0]}_{num_partitions}part_threshold_{threshold}_mermaid.md"
+    else:
+        return f"{method}_output/{input_file.split('.')[0]}_{num_partitions}part_mermaid.md"
 
 if __name__ == "__main__":
     # graph = [(1, 4), (1, 6), 
